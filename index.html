@@ -13,9 +13,10 @@
     .click{
         color: rgb(207, 13, 45);
         position: fixed;
-        top:10%;
-        left: 15%;
+        top:5%;
+        left: 20%;
         animation: bounce 0.5s linear infinite;
+        display: block;
     }
     @keyframes bounce {
         0%, 100% {
@@ -30,12 +31,14 @@
         top: 30%;
         left: 30%;
         z-index:4;
+        display: none;
     }
     #img2{
         position: fixed;
         top: 30%;
         right: 31.5%;
         z-index:3;
+        display: none;
     }
     #img3{
         position: fixed;
@@ -43,12 +46,14 @@
         left:30%;
         z-index:2;
         bottom: 0%;
+        display: none;
     }
     #vid1{
         position: fixed;
         top: 30%;
         left: 30%;
         z-index:1;
+        display: none;
     }
     #img1, #img2, #img3:hover{
         cursor: pointer;
@@ -87,7 +92,42 @@
             transform: translateY(-20%);
         }
     }
+    #btn-inp{
+            background-color: rgb(14, 105, 225);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 20px;
+            margin-left: 20%;
+            font-size: 20px;
+            position: relative;
+            left: 15%;
+            top: 25vh;
+            text-align: center;
+            text-decoration: none;
+        }
+        #imageInput-1, #imageInput-2, #imageInput-3{
+            position: relative;
+            top:20vh;
+            left:15vw;
+            margin-top:10px;
+            font-size: 18px;
+            font-family:'Times New Roman', Times, serif;
+            color: rgb(195, 20, 20);
+        }
+        .fav{
+            color: rgb(207, 13, 45);
+            position: fixed;
+            top:10%;
+            left: 20%;
+            display: block;
+
+        }
 }
+
 
 @media (min-width: 768px){
     body{
@@ -100,6 +140,7 @@
         left: 40%;
         font-size: 50px;
         animation: bounce 0.5s linear infinite;
+        display: none;
     }
     @keyframes bounce {
         0%, 100% {
@@ -116,6 +157,7 @@
         height: 500px;
         width: 500px;
         z-index:4;
+        display: none;
     }
     #img2{
         position: fixed;
@@ -124,6 +166,7 @@
         z-index:3;
         height: 500px;
         width: 500px;
+        display: none;
     }
     #img3{
         position: fixed;
@@ -133,6 +176,7 @@
         bottom: 0%;
         height: 500px;
         width: 500px;
+        display: none;
     }
     #vid1{
         position: fixed;
@@ -141,6 +185,7 @@
         z-index:1;
         height: 500px;
         width: 500px;
+        display: none;
     }
     #img1, #img2, #img3:hover{
         cursor: pointer;
@@ -180,17 +225,56 @@
         }
     }
 }
+#btn-inp{
+            background-color: rgb(14, 105, 225);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 20px;
+            margin-left: 20%;
+            font-size: 20px;
+            position: relative;
+            left: 15%;
+            top: 25vh;
+            text-align: center;
+            text-decoration: none;
+        }
+        #imageInput-1, #imageInput-2, #imageInput-3{
+            position: relative;
+            top:20vh;
+            left:15vw;
+            margin-top:10px;
+            font-size: 18px;
+            font-family:'Times New Roman', Times, serif;
+            color: rgb(195, 20, 20);
+        }
+        .fav{
+            color: rgb(207, 13, 45);
+            position: fixed;
+            top:15%;
+            left: 20%;
+            display: block;
+
+        }
 
 
 
     </style>
 </head>
 <body>
-    <h1 class="click" id="click">Click on the image</h1>
+    <h1 class="click" id="click">Click on the button</h1>
+    <h1 class="fav" id="fav">Choose your fav images</h1>
+    <input type="file" id="imageInput-1" accept="image/*" required>
+    <input type="file" id="imageInput-2" accept="image/*" required>
+    <input type="file" id="imageInput-3" accept="image/*" required>
+    <p onclick="submit()" id="btn-inp">Submit</p>
     <div class="image-container">
-        <img src="img1.png" alt="Image 1" height="200px" width="200px" id="img1" onclick="img1()">
-        <img src="img2.png" alt="Image 2" height="200px" width="200px" id="img2" onclick="img2()">
-        <img src="img3.png" alt="Image 3" height="200px" width="200px" id="img3" onclick="img3()">
+        <img alt="Image 1" height="200px" width="200px" id="img1" onclick="img1()">
+        <img alt="Image 2" height="200px" width="200px" id="img2" onclick="img2()">
+        <img alt="Image 3" height="200px" width="200px" id="img3" onclick="img3()">
         <video id="vid1" src="giphappy.mp4" height="200px" width="200px" loop></video>
     </div>
     <script>
@@ -221,6 +305,27 @@ function img3(){
     image3.style.width="120px";
     image3.classList.add("slide-bottom");
     v.play();
+}
+function submit(){
+    h=document.getElementById("click");
+    h.style.display="none";
+    image1.src=URL.createObjectURL(document.getElementById("imageInput-1").files[0]);
+    image2.src=URL.createObjectURL(document.getElementById("imageInput-2").files[0]);
+    image3.src=URL.createObjectURL(document.getElementById("imageInput-3").files[0]);
+    image1.style.display="block";
+    image2.style.display="block";
+    image3.style.display="block";
+    b=document.getElementById("btn-inp");
+    b.style.display="none";
+    ig1=document.getElementById("imageInput-1");
+    ig2=document.getElementById("imageInput-2");
+    ig3=document.getElementById("imageInput-3");
+    ig1.style.display="none";
+    ig2.style.display="none";
+    ig3.style.display="none";
+    v.style.display="block";
+    fav=document.getElementById("fav");
+    fav.style.display="none";
 }
 
     </script>
